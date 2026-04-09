@@ -1,0 +1,182 @@
+// Three Phase UPS Products Data
+const threePhaseProducts = [
+  {
+    name: "1kVA Three Phase Industrial Online UPS",
+    id: "1kva-3ph",
+    image: "assets/products/04_1kva-three-phase-industrial-online-ups-1749530587-8124116.jpeg",
+    price: "On request",
+    details: ["Country of Origin: India", "Capacity: 1 kVA", "Configuration: 3 Phase in & 3 Phase Out", "Phase: Three Phase", "Topology: Online"]
+  },
+  {
+    name: "15kVA Three Phase Industrial Online UPS",
+    id: "15kva-3ph",
+    image: "assets/products/02_15kva-three-phase-industrial-online-ups-1749530414-8124106.jpeg",
+    price: "On request",
+    details: ["Country of Origin: India", "Capacity: 15 KVA", "Model Name: KE44015", "Phase: 3 Phase", "Warranty: 3 Years"]
+  },
+  {
+    name: "40kVA Three Phase Industrial Online UPS",
+    id: "40kva",
+    image: "assets/products/08_40kva-three-phase-industrial-online-ups-1749530047-8124075.jpeg",
+    price: "On request",
+    details: ["Country of Origin: India", "Capacity: 40 kVA", "Phase: Three Phase", "Application: Continuous Power Backup", "Warranty: 1 Year"]
+  },
+  {
+    name: "60kVA Three Phase Industrial Online UPS",
+    id: "60kva",
+    image: "assets/products/10_60kva-three-phase-industrial-online-ups-1749530152-8124084.jpeg",
+    price: "On request",
+    details: ["Country of Origin: India", "Capacity: 60 kVA", "Phase: Three Phase", "Application: Continuous Power Backup", "Warranty: 2 Years"]
+  }
+];
+
+// ── Modal ──────────────────────────────────────────────────
+function initModal() {
+  if (document.getElementById('product-modal')) return;
+
+  const modal = document.createElement('div');
+  modal.id = 'product-modal';
+  modal.className = 'modal-overlay';
+  modal.innerHTML = `
+    <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+      <button class="modal-close" id="modal-close" aria-label="Close">&#10005;</button>
+      <div class="modal-inner">
+        <div class="modal-img-wrap">
+          <img id="modal-img" src="" alt="">
+        </div>
+        <div class="modal-body">
+          <div class="modal-badge" id="modal-badge">Industrial UPS</div>
+          <h2 id="modal-title"></h2>
+          <div class="modal-price">
+            <span>Price:</span> <strong>On Request</strong> <em>(enquiry-based)</em>
+          </div>
+          <ul id="modal-specs" class="modal-specs"></ul>
+          <a href="index.html#contact" class="btn-primary modal-cta">Request a Quote</a>
+        </div>
+      </div>
+    </div>
+  `;
+  document.body.appendChild(modal);
+
+  document.getElementById('modal-close').addEventListener('click', closeModal);
+  modal.addEventListener('click', function (e) {
+    if (e.target === modal) closeModal();
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') closeModal();
+  });
+}
+
+function openModal(product) {
+  document.getElementById('modal-img').src = product.image;
+  document.getElementById('modal-img').alt = product.name;
+  document.getElementById('modal-title').textContent = product.name;
+
+  const phaseDetail = product.details.find(d => /phase/i.test(d));
+  document.getElementById('modal-badge').textContent =
+    phaseDetail ? phaseDetail.replace(/^phase:\s*/i, '') : 'Three Phase';
+
+  document.getElementById('modal-specs').innerHTML =
+    product.details.map(d => `<li>${d}</li>`).join('');
+
+  document.getElementById('product-modal').classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal() {
+  const modal = document.getElementById('product-modal');
+  if (modal) {
+    modal.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+}
+
+// ── Card template ──────────────────────────────────────────
+function createProductCard(product) {
+  const specPills = product.details
+    .map(d => `<span class="spec-pill">${d}</span>`)
+    .join('');
+  return `
+    <article class="card card-product" id="${product.id}">
+      <div class="card-product-media">
+        <img src="${product.image}" alt="${product.name.replace(/"/g, '&quot;')}" loading="lazy">
+      </div>
+      <div class="card-product-body">
+        <h3 class="product-title">${product.name}</h3>
+        <div class="product-specs">${specPills}</div>
+        <p class="product-price">
+          <span class="price-label">Price</span>
+          <strong>${product.price}</strong>
+          <span class="price-hint">(enquiry-based)</span>
+        </p>
+        <div class="product-actions">
+          <button class="btn-details" data-product-id="${product.id}">View Details</button>
+          <a href="index.html#contact" class="btn-primary">Get Quote</a>
+        </div>
+      </div>
+    </article>
+  `;
+}
+
+// ── Main ───────────────────────────────────────────────────
+document.addEventListener('DOMContentLoaded', function () {
+  const container = document.getElementById('three-phase-products');
+  const tabButtons = document.querySelectorAll('.tab-btn');
+
+  initModal();
+
+  function showAllProducts() {
+    tabButtons.forEach(btn => btn.classList.remove('active'));
+    const allBtn = document.querySelector('.tab-btn[data-tab="all"]');
+    if (allBtn) allBtn.classList.add('active');
+    container.innerHTML = threePhaseProducts.map(createProductCard).join('');
+  }
+
+  function showFiltered(tab) {
+    let list = threePhaseProducts;
+    if (tab === 'low-capacity')  list = threePhaseProducts.filter(p => ['1kva-3ph','15kva-3ph'].includes(p.id));
+    if (tab === 'high-capacity') list = threePhaseProducts.filter(p => ['40kva','60kva'].includes(p.id));
+    container.innerHTML = list.map(createProductCard).join('');
+  }
+
+  if (container) {
+    showAllProducts();
+
+    // Scroll to anchor after JS renders cards
+    if (window.location.hash) {
+      const target = document.querySelector(window.location.hash);
+      if (target) setTimeout(() => target.scrollIntoView({ behavior: 'smooth', block: 'start' }), 80);
+    }
+  }
+
+  // Tabs
+  tabButtons.forEach(btn => {
+    btn.addEventListener('click', function () {
+      tabButtons.forEach(b => b.classList.remove('active'));
+      this.classList.add('active');
+      showFiltered(this.dataset.tab);
+    });
+  });
+
+  // View Details delegation
+  document.addEventListener('click', function (e) {
+    const btn = e.target.closest('.btn-details');
+    if (!btn) return;
+    const product = threePhaseProducts.find(p => p.id === btn.dataset.productId);
+    if (product) openModal(product);
+  });
+
+  // Nav anchor clicks — reset to All tab so target element exists
+  const productIds = new Set(threePhaseProducts.map(p => '#' + p.id));
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      e.preventDefault();
+      const href = this.getAttribute('href');
+      if (productIds.has(href)) showAllProducts();
+      setTimeout(() => {
+        const target = document.querySelector(href);
+        if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 50);
+    });
+  });
+});
