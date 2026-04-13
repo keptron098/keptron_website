@@ -120,6 +120,18 @@ function createProductCard(product) {
 
 // ── Main ───────────────────────────────────────────────────
 document.addEventListener('DOMContentLoaded', function () {
+  // Hamburger menu
+  const hamburger = document.getElementById('hamburger');
+  const navList = document.getElementById('nav-list');
+  const navOverlay = document.getElementById('nav-overlay');
+  const navClose = document.getElementById('nav-close');
+  function openMenu() { navList.classList.add('open'); navOverlay.classList.add('open'); document.body.style.overflow = 'hidden'; }
+  function closeMenu() { navList.classList.remove('open'); navOverlay.classList.remove('open'); document.body.style.overflow = ''; }
+  if (hamburger) hamburger.addEventListener('click', openMenu);
+  if (navOverlay) navOverlay.addEventListener('click', closeMenu);
+  if (navClose) navClose.addEventListener('click', closeMenu);
+  document.querySelectorAll('.nav-list .nav-link:not(.dropdown-toggle)').forEach(l => l.addEventListener('click', closeMenu));
+
   const container = document.getElementById('three-phase-products');
   const tabButtons = document.querySelectorAll('.tab-btn');
 

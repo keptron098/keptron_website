@@ -4,18 +4,18 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Keptron Electronics - Industrial UPS Systems | Manufacturer & Exporter Since 1991</title>
-  <meta name="description" content="Keptron Electronics is India's trusted manufacturer, exporter & supplier of Industrial Online UPS Systems since 1991. Single Phase (1-20kVA) & Three Phase (1-60kVA) UPS solutions. ISO, CE, BIS certified.">
+  <meta name="description" content="Keptron Electronics is India's trusted manufacturer, exporter & supplier of Industrial Online UPS Systems since 1991. Single Phase (1-20kVA) & Three Phase (1-300kVA) UPS solutions. ISO, CE, BIS certified.">
   <meta name="keywords" content="industrial UPS, online UPS, single phase UPS, three phase UPS, UPS manufacturer India, Keptron Electronics, power protection, uninterruptible power supply, Make in India UPS">
   <meta name="robots" content="index, follow">
   <meta name="author" content="Keptron Electronics">
   <meta name="geo.region" content="IN-DL">
   <meta name="geo.placename" content="Delhi">
-  <link rel="canonical" href="https://www.keptron.in/">
+  <link rel="canonical" href="https://www.keptron.com/">
   <meta property="og:title" content="Keptron Electronics - Industrial UPS Systems">
-  <meta property="og:description" content="India's trusted manufacturer of Industrial Online UPS Systems since 1991. Single Phase & Three Phase UPS solutions from 1kVA to 60kVA.">
+  <meta property="og:description" content="India's trusted manufacturer of Industrial Online UPS Systems since 1991. Single Phase & Three Phase UPS solutions from 1kVA to 300kVA.">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://www.keptron.in/">
-  <meta property="og:image" content="https://www.keptron.in/assets/logo.jpg">
+  <meta property="og:url" content="https://www.keptron.com/">
+  <meta property="og:image" content="https://www.keptron.com/assets/logo.jpg">
   <meta property="og:site_name" content="Keptron Electronics">
   <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
   <link rel="icon" type="image/png" href="assets/favicon.png">
@@ -35,7 +35,12 @@
         </div>
       </div>
       <nav class="main-nav">
-        <ul class="nav-list">
+        <button class="hamburger" id="hamburger" aria-label="Open menu">
+          <span></span><span></span><span></span>
+        </button>
+        <div class="nav-overlay" id="nav-overlay"></div>
+        <ul class="nav-list" id="nav-list">
+          <li class="nav-close-li"><button class="nav-close" id="nav-close" aria-label="Close menu">&times;</button></li>
           <li><a href="#home" class="nav-link">Home</a></li>
           <li class="dropdown">
             <a href="#products" class="nav-link dropdown-toggle">Products ▼</a>
@@ -65,6 +70,7 @@
               <li><a href="product-matrix.html">Product Matrix</a></li>
             </ul>
           </li>
+          <li><a href="blogs.html" class="nav-link">Blogs</a></li>
           <li><a href="#about" class="nav-link">About Us</a></li>
           <li><a href="#testimonials" class="nav-link">Testimonials</a></li>
           <li><a href="#contact" class="nav-link">Contact</a></li>
@@ -80,8 +86,8 @@
         <h2>India's Trusted Source for Industrial UPS Systems</h2>
         <p>Manufacturer, Exporter & Supplier of Industrial Online UPS Systems since 1991</p>
         <div class="cta-buttons">
-          <a href="#products" class="btn-primary">View Products</a>
-          <a href="#quote" class="btn-secondary">Get Quote</a>
+          <a href="#product-matrix" class="btn-primary">View Products</a>
+          <a href="#contact" class="btn-secondary">Get Quote</a>
         </div>
       </div>
       <div class="hero-features">
@@ -91,11 +97,32 @@
         </div>
         <div class="feature-item">
           <h3>Three Phase</h3>
-          <p>1kVA to 60kVA configurations</p>
+          <p>1kVA to 300kVA configurations</p>
         </div>
         <div class="feature-item">
           <h3>Make in India</h3>
           <p>Quality manufacturing since 1991</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="certifications-banner">
+      <div class="cert-items">
+        <div class="cert-item">
+          <div class="cert-icon">🇮🇳</div>
+          <span>Make in India</span>
+        </div>
+        <div class="cert-item">
+          <div class="cert-icon">ISO</div>
+          <span>ISO Certified</span>
+        </div>
+        <div class="cert-item">
+          <div class="cert-icon">CE</div>
+          <span>CE Certified</span>
+        </div>
+        <div class="cert-item">
+          <div class="cert-icon">BIS</div>
+          <span>BIS Certified</span>
         </div>
       </div>
     </section>
@@ -118,7 +145,7 @@
         <div class="category-card">
           <div class="category-icon">⚡⚡⚡</div>
           <h3>Three Phase UPS</h3>
-          <p>1kVA to 60kVA capacity range</p>
+          <p>1kVA to 300kVA capacity range</p>
           <ul class="category-features">
             <li>Industrial grade</li>
             <li>Parallel operation</li>
@@ -135,43 +162,7 @@
             <li>Special voltages</li>
             <li>Extended runtime</li>
           </ul>
-          <a href="#quote" class="category-link">Get Quote →</a>
-        </div>
-      </div>
-    </section>
-
-    <section id="about" class="about-section">
-      <h2>About Keptron Electronics</h2>
-      <div class="about-content">
-        <div class="about-text">
-          <p id="welcome-text"></p>
-          <div class="company-values">
-            <div class="value-item">
-              <div class="value-icon">🇮🇳</div>
-              <div>
-                <h3>Make in India</h3>
-                <p>Proudly manufacturing 100% in India since 1991. Our UPS systems are designed, built, and tested at our Delhi facility — supporting India's industrial growth and the self-reliance mission.</p>
-              </div>
-            </div>
-            <div class="value-item">
-              <div class="value-icon">♻️</div>
-              <div>
-                <h3>Green Company</h3>
-                <p>We are committed to environmental responsibility. Our UPS systems are built using components sourced from recycled and eco-friendly materials, reducing our carbon footprint while delivering world-class power protection.</p>
-              </div>
-            </div>
-            <div class="value-item">
-              <div class="value-icon">🌍</div>
-              <div>
-                <h3>Global Presence</h3>
-                <p>Serving customers worldwide with reliable power solutions, certified products (ISO, CE, BIS), and exceptional after-sales support backed by over three decades of expertise.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="company-stats">
-          <h3>Company Overview</h3>
-          <div class="glimpse" id="glimpse"></div>
+          <a href="#contact" class="category-link">Get Quote →</a>
         </div>
       </div>
     </section>
@@ -187,11 +178,13 @@
       <div class="contact-grid">
         <div class="contact-info">
           <h3>Get in Touch</h3>
-          <p><strong>Contact Person:</strong> Mr. Anil Kumar</p>
-          <p><strong>Phone:</strong> <a href="tel:+919810046719">+91-9810046719</a></p>
-          <p><strong>Address:</strong> 110A, Ist Floor, Patparganj, Opp. Community Centre, Patparganj, Delhi, India - 110091</p>
-          <p><strong>Website:</strong> <a href="https://www.keptron.in/" target="_blank" rel="noreferrer">keptron.in</a></p>
-          <p><strong>Email:</strong> <a href="mailto:keptron110@gmail.com">keptron110@gmail.com</a></p>
+          <p><strong>Phone:</strong> <a href="tel:+918424832663">+91-8424832663</a></p>
+          <p><strong>Email:</strong> <a href="mailto:info@keptronelectronics.com">info@keptronelectronics.com</a></p>
+          <p><strong>Website:</strong> <a href="https://www.keptron.com/" target="_blank" rel="noreferrer">keptron.com</a></p>
+          <h4 style="margin-top: 18px; margin-bottom: 8px;">Our Offices</h4>
+          <p><strong>Delhi:</strong> 110A, Ist Floor, Patparganj, Opp. Community Centre, Patparganj, Delhi, India - 110091</p>
+          <p><strong>Kerala:</strong> Keptron Electronics, Kerala, India</p>
+          <p><strong>Mumbai:</strong> Keptron Electronics, Mumbai, India</p>
         </div>
         <div class="quote-form">
           <h3>Request a Quote</h3>
@@ -211,11 +204,81 @@
         </div>
       </div>
     </section>
+
+    <section id="about" class="about-section">
+      <h2>About Keptron Electronics</h2>
+      <p class="about-intro" id="welcome-text"></p>
+
+      <div class="accordion">
+        <div class="accordion-item">
+          <button class="accordion-header" aria-expanded="false">
+            <span class="accordion-icon">🇮🇳</span>
+            <span class="accordion-title">Make in India</span>
+            <span class="accordion-arrow">▼</span>
+          </button>
+          <div class="accordion-body">
+            <p>Proudly manufacturing 100% in India since 1991. Our UPS systems are designed, built, and tested at our manufacturing facility in Delhi. With offices in Kerala, Delhi, and Mumbai — supporting India's industrial growth and the self-reliance mission.</p>
+            <p>As a trusted Indian manufacturer, we contribute to the Make in India initiative by providing world-class power protection solutions that reduce reliance on imported equipment while supporting local employment and skill development.</p>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <button class="accordion-header" aria-expanded="false">
+            <span class="accordion-icon">♻️</span>
+            <span class="accordion-title">Green Company</span>
+            <span class="accordion-arrow">▼</span>
+          </button>
+          <div class="accordion-body">
+            <p>We are committed to environmental responsibility. Our UPS systems are built using components sourced from recycled and eco-friendly materials, reducing our carbon footprint while delivering world-class power protection.</p>
+            <p>Our energy-efficient designs minimise power loss and extend the life of connected equipment, contributing to a more sustainable future.</p>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <button class="accordion-header" aria-expanded="false">
+            <span class="accordion-icon">🌍</span>
+            <span class="accordion-title">Global Presence</span>
+            <span class="accordion-arrow">▼</span>
+          </button>
+          <div class="accordion-body">
+            <p>Serving customers worldwide with reliable power solutions, certified products (ISO, CE, BIS), and exceptional after-sales support backed by over three decades of expertise.</p>
+            <p>Our clientele includes government organisations, banks, defence, telecom, energy, and logistics sectors across India and beyond.</p>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <button class="accordion-header" aria-expanded="false">
+            <span class="accordion-icon">🏭</span>
+            <span class="accordion-title">Company Overview</span>
+            <span class="accordion-arrow">▼</span>
+          </button>
+          <div class="accordion-body">
+            <div class="glimpse" id="glimpse"></div>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <button class="accordion-header" aria-expanded="false">
+            <span class="accordion-icon">🏆</span>
+            <span class="accordion-title">Certifications & Standards</span>
+            <span class="accordion-arrow">▼</span>
+          </button>
+          <div class="accordion-body">
+            <p>Our products comply with internationally recognised quality and safety standards:</p>
+            <ul>
+              <li><strong>ISO Certified</strong> — Quality management systems compliant with ISO standards.</li>
+              <li><strong>CE Certified</strong> — Meets European Conformity standards for safety, health, and environmental protection.</li>
+              <li><strong>BIS Certified</strong> — Bureau of Indian Standards approval for reliability and performance.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
   </main>
 
   <footer>
     <div class="container">
-      <p>© 2024 Keptron Electronics. All rights reserved. | Manufacturer, Exporter &amp; Supplier of Industrial Online UPS Systems since 1991</p>
+      <p>© 2026 Keptron Electronics. All rights reserved. | Manufacturer, Exporter &amp; Supplier of Industrial Online UPS Systems since 1991</p>
     </div>
   </footer>
 

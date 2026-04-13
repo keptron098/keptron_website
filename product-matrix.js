@@ -13,13 +13,26 @@ const matrixProducts = {
   "3ph-1ph": [
     { id: "10kva", name: "10 kVA (3ph-1ph)", page: "single-phase-ups.html#10kva" },
     { id: "15kva", name: "15 kVA (3ph-1ph)", page: "three-phase-ups.html#15kva-3ph" },
-    { id: "40kva", name: "40 kVA (3ph-1ph)", page: "three-phase-ups.html#40kva" }
+    { id: "40kva", name: "40 kVA (3ph-1ph)", page: "three-phase-ups.html#40kva" },
+    { id: "60kva", name: "60 kVA (3ph-1ph)", page: "three-phase-ups.html#60kva" },
+    { id: "80kva", name: "80 kVA (3ph-1ph)", page: "index.html#contact" },
+    { id: "100kva", name: "100 kVA (3ph-1ph)", page: "index.html#contact" },
+    { id: "120kva", name: "120 kVA (3ph-1ph)", page: "index.html#contact" },
+    { id: "150kva", name: "150 kVA (3ph-1ph)", page: "index.html#contact" },
+    { id: "200kva", name: "200 kVA (3ph-1ph)", page: "index.html#contact" },
+    { id: "300kva", name: "300 kVA (3ph-1ph)", page: "index.html#contact" }
   ],
   "3ph-3ph": [
     { id: "1kva-3ph", name: "1 kVA Three Phase", page: "three-phase-ups.html#1kva-3ph" },
     { id: "15kva", name: "15 kVA Three Phase", page: "three-phase-ups.html#15kva-3ph" },
     { id: "40kva", name: "40 kVA Three Phase", page: "three-phase-ups.html#40kva" },
-    { id: "60kva", name: "60 kVA Three Phase", page: "three-phase-ups.html#60kva" }
+    { id: "60kva", name: "60 kVA Three Phase", page: "three-phase-ups.html#60kva" },
+    { id: "80kva", name: "80 kVA Three Phase", page: "index.html#contact" },
+    { id: "100kva", name: "100 kVA Three Phase", page: "index.html#contact" },
+    { id: "120kva", name: "120 kVA Three Phase", page: "index.html#contact" },
+    { id: "150kva", name: "150 kVA Three Phase", page: "index.html#contact" },
+    { id: "200kva", name: "200 kVA Three Phase", page: "index.html#contact" },
+    { id: "300kva", name: "300 kVA Three Phase", page: "index.html#contact" }
   ]
 };
 
@@ -43,8 +56,20 @@ function fillMatrixSelect(selectId, bucketKey) {
   });
 }
 
-// Initialize matrix dropdowns
+// Initialize matrix dropdowns and hamburger menu
 document.addEventListener('DOMContentLoaded', function() {
+  // Hamburger menu
+  const hamburger = document.getElementById('hamburger');
+  const navList = document.getElementById('nav-list');
+  const navOverlay = document.getElementById('nav-overlay');
+  const navClose = document.getElementById('nav-close');
+  function openMenu() { navList.classList.add('open'); navOverlay.classList.add('open'); document.body.style.overflow = 'hidden'; }
+  function closeMenu() { navList.classList.remove('open'); navOverlay.classList.remove('open'); document.body.style.overflow = ''; }
+  if (hamburger) hamburger.addEventListener('click', openMenu);
+  if (navOverlay) navOverlay.addEventListener('click', closeMenu);
+  if (navClose) navClose.addEventListener('click', closeMenu);
+  document.querySelectorAll('.nav-list .nav-link:not(.dropdown-toggle)').forEach(l => l.addEventListener('click', closeMenu));
+
   fillMatrixSelect("dd-1ph-1ph", "1ph-1ph");
   fillMatrixSelect("dd-3ph-1ph", "3ph-1ph");
   fillMatrixSelect("dd-3ph-3ph", "3ph-3ph");

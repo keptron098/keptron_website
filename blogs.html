@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blogs & Insights - Keptron Electronics | Industrial UPS Knowledge Hub</title>
+  <meta name="description" content="Insights, guides and updates on industrial UPS systems, power protection, and best practices from Keptron Electronics.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://www.keptron.com/blogs.html">
+  <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .blogs-hero {
+      background: linear-gradient(135deg, var(--brand-dark) 0%, var(--brand-mid) 100%);
+      color: #fff;
+      padding: 64px 24px;
+      text-align: center;
+      border-radius: var(--r-lg);
+      margin: 24px 0;
+    }
+    .blogs-hero h1 { color: #fff; font-size: 2.4rem; margin: 0 0 12px; }
+    .blogs-hero p { color: rgba(255,255,255,0.78); max-width: 640px; margin: 0 auto; }
+    .blog-list { background: var(--surface); padding: 48px 36px; border-radius: var(--r-lg); box-shadow: var(--shadow-md); margin: 24px 0; }
+    .blog-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+    .blog-card {
+      background: var(--bg); border: 1.5px solid var(--border);
+      border-radius: var(--r-md); padding: 24px; display: flex;
+      flex-direction: column; transition: all 0.25s ease; cursor: pointer;
+    }
+    .blog-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-lg); border-color: var(--brand-mid); }
+    .blog-cat {
+      font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em;
+      text-transform: uppercase; color: var(--brand-accent); margin-bottom: 8px;
+    }
+    .blog-date { font-size: 0.78rem; color: var(--text-muted); margin-bottom: 10px; }
+    .blog-title {
+      font-size: 1.1rem; font-weight: 700; color: var(--brand-dark);
+      margin: 0 0 10px; line-height: 1.35;
+    }
+    .blog-excerpt { font-size: 0.88rem; color: var(--text-muted); line-height: 1.6; flex: 1; }
+    .blog-read-more { color: var(--brand-mid); font-weight: 600; font-size: 0.88rem; margin-top: 12px; }
+    .no-posts { text-align: center; padding: 48px 0; color: var(--text-muted); }
+    .no-posts .icon { font-size: 2.8rem; margin-bottom: 12px; }
+
+    .post-modal {
+      display: none; position: fixed; inset: 0; z-index: 9000;
+      background: rgba(1,42,74,0.7); backdrop-filter: blur(4px);
+      padding: 20px; overflow-y: auto;
+    }
+    .post-modal.open { display: flex; align-items: flex-start; justify-content: center; }
+    .post-modal-inner {
+      background: #fff; border-radius: var(--r-lg); width: 100%;
+      max-width: 780px; padding: 40px 44px; margin: auto; position: relative;
+    }
+    .post-modal-close {
+      position: absolute; top: 14px; right: 18px; background: none;
+      border: none; font-size: 1.8rem; cursor: pointer; color: var(--text-muted);
+    }
+    .post-modal-cat { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--brand-accent); }
+    .post-modal-title { font-size: 1.7rem; color: var(--brand-dark); margin: 6px 0 4px; }
+    .post-modal-meta { font-size: 0.82rem; color: var(--text-muted); margin-bottom: 18px; }
+    .post-modal-content { font-size: 0.96rem; line-height: 1.8; color: var(--text); }
+    .post-modal-content h2, .post-modal-content h3 { color: var(--brand-dark); margin: 18px 0 10px; }
+
+    .admin-trigger { text-align: center; padding: 14px 0; }
+    .admin-trigger button {
+      background: transparent; border: 1px solid var(--border);
+      color: var(--text-muted); font-size: 0.78rem; padding: 6px 14px;
+      border-radius: var(--r-pill); cursor: pointer; letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .admin-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.6); z-index: 9500; padding: 20px; overflow-y: auto; }
+    .admin-overlay.open { display: flex; align-items: flex-start; justify-content: center; }
+    .admin-panel {
+      background: #fff; border-radius: var(--r-lg); padding: 32px;
+      width: 100%; max-width: 700px; margin: auto; position: relative;
+    }
+    .admin-panel h2 { margin-top: 0; color: var(--brand-dark); }
+    .admin-panel input, .admin-panel select, .admin-panel textarea {
+      width: 100%; padding: 10px 14px; margin-bottom: 12px;
+      border: 1.5px solid var(--border); border-radius: var(--r-sm);
+      font-family: inherit; font-size: 0.92rem;
+    }
+    .admin-panel textarea { min-height: 200px; }
+    .admin-close { position: absolute; top: 14px; right: 18px; background: none; border: none; font-size: 1.6rem; cursor: pointer; }
+    .admin-btn-row { display: flex; gap: 10px; flex-wrap: wrap; }
+    .admin-btn-row button { flex: 1; min-width: 120px; padding: 10px 14px; border-radius: var(--r-pill); border: none; font-weight: 600; cursor: pointer; }
+    .admin-btn-primary { background: var(--brand-accent); color: #fff; }
+    .admin-btn-secondary { background: var(--bg); color: var(--text); border: 1px solid var(--border) !important; }
+    .admin-msg { padding: 10px 14px; border-radius: var(--r-sm); margin-bottom: 14px; font-size: 0.88rem; }
+    .admin-msg.success { background: #d1fae5; color: #065f46; }
+    .admin-msg.error { background: #fee2e2; color: #991b1b; }
+
+    @media (max-width: 900px) {
+      .blog-grid { grid-template-columns: 1fr; }
+      .post-modal-inner { padding: 28px 22px; }
+    }
+  </style>
+</head>
+<body>
+  <header class="main-header">
+    <div class="container">
+      <div class="header-top">
+        <div class="logo-section">
+          <img src="assets/logo.jpg" alt="Keptron Electronics logo" class="logo">
+          <div class="brand-info">
+            <h1>Keptron Electronics</h1>
+            <p>Industrial Online UPS Systems</p>
+          </div>
+        </div>
+        <div class="badge">MAKE IN INDIA</div>
+      </div>
+      <nav class="main-nav">
+        <button class="hamburger" id="hamburger" aria-label="Open menu">
+          <span></span><span></span><span></span>
+        </button>
+        <div class="nav-overlay" id="nav-overlay"></div>
+        <ul class="nav-list" id="nav-list">
+          <li class="nav-close-li"><button class="nav-close" id="nav-close" aria-label="Close menu">&times;</button></li>
+          <li><a href="index.html" class="nav-link">Home</a></li>
+          <li class="dropdown">
+            <a href="#" class="nav-link dropdown-toggle">Products ▼</a>
+            <ul class="dropdown-menu">
+              <li><a href="single-phase-ups.html">Single Phase UPS</a></li>
+              <li><a href="three-phase-ups.html">Three Phase UPS</a></li>
+              <li><a href="product-matrix.html">Product Matrix</a></li>
+            </ul>
+          </li>
+          <li><a href="blogs.html" class="nav-link">Blogs</a></li>
+          <li><a href="index.html#about" class="nav-link">About Us</a></li>
+          <li><a href="index.html#contact" class="nav-link">Contact</a></li>
+          <li><a href="index.html#contact" class="nav-link quote-btn">Get a Quote</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="blogs-hero">
+      <h1>Blogs & Insights</h1>
+      <p>Expert articles on industrial UPS systems, power protection best practices, and the latest from Keptron Electronics.</p>
+    </section>
+
+    <section class="blog-list">
+      <div id="blog-grid" class="blog-grid"></div>
+      <div id="no-posts" class="no-posts" style="display:none;">
+        <div class="icon">📝</div>
+        <p>No blog posts yet. Check back soon!</p>
+      </div>
+    </section>
+
+    <div class="admin-trigger">
+      <button id="admin-open">Admin</button>
+    </div>
+  </main>
+
+  <div class="post-modal" id="post-modal">
+    <div class="post-modal-inner">
+      <button class="post-modal-close" id="post-modal-close">&times;</button>
+      <div class="post-modal-cat" id="post-modal-cat"></div>
+      <h2 class="post-modal-title" id="post-modal-title"></h2>
+      <div class="post-modal-meta" id="post-modal-meta"></div>
+      <div class="post-modal-content" id="post-modal-content"></div>
+    </div>
+  </div>
+
+  <div class="admin-overlay" id="admin-overlay">
+    <div class="admin-panel">
+      <button class="admin-close" id="admin-close">&times;</button>
+      <h2>Blog Admin</h2>
+      <div id="admin-msg"></div>
+      <div id="admin-login">
+        <p style="color:var(--text-muted);font-size:0.9rem;">Enter credentials to manage blog posts.</p>
+        <input type="email" id="admin-email" placeholder="Admin email" value="info@keptronelectronics.com">
+        <input type="password" id="admin-password" placeholder="Admin password">
+        <div class="admin-btn-row">
+          <button class="admin-btn-primary" id="admin-login-btn">Sign In</button>
+          <button class="admin-btn-secondary" id="admin-setup-btn">First-time Setup</button>
+        </div>
+      </div>
+      <div id="admin-editor" style="display:none;">
+        <p style="color:var(--text-muted);font-size:0.9rem;">Create or edit a blog post.</p>
+        <input type="text" id="post-title" placeholder="Post title">
+        <input type="text" id="post-category" placeholder="Category (e.g. Power Tips)">
+        <input type="date" id="post-date">
+        <textarea id="post-content" placeholder="Write your post. HTML tags like <h2>, <p>, <ul>, <strong> are allowed."></textarea>
+        <label style="display:flex;align-items:center;gap:8px;margin-bottom:14px;">
+          <input type="checkbox" id="post-published" style="width:auto;margin:0;">
+          <span>Publish (uncheck for draft)</span>
+        </label>
+        <div class="admin-btn-row">
+          <button class="admin-btn-primary" id="post-save">Save Post</button>
+          <button class="admin-btn-secondary" id="post-new">New Post</button>
+          <button class="admin-btn-secondary" id="admin-logout">Sign Out</button>
+        </div>
+        <h3 style="margin-top:24px;">Existing Posts</h3>
+        <div id="admin-post-list" style="font-size:0.88rem;"></div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="container">
+      <p>© 2026 Keptron Electronics. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="blogs.js"></script>
+</body>
+</html>

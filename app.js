@@ -1,10 +1,10 @@
-const welcomeText = `Established in 1991, Keptron Electronics is a Manufacturer, Exporter and Supplier of Industrial Online UPS systems. Product coverage includes 1kVA, 2kVA, 3kVA, 5kVA, 7.5kVA, 10kVA, 15kVA, 20kVA, 40kVA and 60kVA models under single-phase and three-phase configurations.`;
+const welcomeText = `Established in 1991, Keptron Electronics is a Manufacturer, Exporter and Supplier of Industrial Online UPS systems. Product coverage includes 1kVA to 20kVA single-phase and 1kVA to 300kVA three-phase configurations, catering to a wide range of industrial power protection needs.`;
 
 const glimpse = [
   ["Nature of Business", "Manufacturer, Exporter & Supplier"],
   ["Year of Establishment", "1991"],
   ["Market Covered", "Worldwide"],
-  ["Founder", "Mr. Anil Kumar"],
+  ["Offices", "Kerala | Delhi | Mumbai"],
   ["GST No", "07AANPK1007A1ZD"]
 ];
 
@@ -133,26 +133,26 @@ const offerings = [
 const testimonials = [
   {
     quote: "We have been in association with Keptron Electronics for several years now. Their industrial UPS systems have never let us down — zero downtime in our production line since installation. Their after-sales support is equally commendable and prompt.",
-    name: "Saidalavi",
-    role: "Operations Manager",
+    name: "National Informatics Centre (NIC)",
+    role: "Government IT Infrastructure",
     stars: 5
   },
   {
     quote: "Keptron offers an affordable product range without compromising on quality. Their staff is highly efficient and responsive. We sourced 5kVA units for our facility and the entire experience — from order placement to installation — has been excellent.",
-    name: "Mohan B",
-    role: "Procurement Head",
+    name: "Punjab National Bank",
+    role: "Banking & Financial Services",
     stars: 5
   },
   {
     quote: "Delighted with the innovation and user-friendly design of Keptron's UPS systems. The units are compact, energy-efficient, and have been running continuously in our setup for over two years without a single issue. Great value for money.",
-    name: "Sunny Bansal",
-    role: "IT Infrastructure Lead",
+    name: "Bharat Electronics Limited",
+    role: "Defence & Electronics",
     stars: 5
   },
   {
     quote: "The product's design is not only aesthetically pleasing but also highly functional. We installed multiple units across our office floors and they integrate seamlessly with our existing electrical setup. Keptron's team was very professional throughout.",
-    name: "Yatendra Singh Kushwah",
-    role: "Facility Manager",
+    name: "Indian Oil Corporation",
+    role: "Energy & Petroleum",
     stars: 5
   }
 ];
@@ -210,13 +210,110 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
   
-  // Quote form submission
+  // Accordion (About section)
+  document.querySelectorAll('.accordion-header').forEach(header => {
+    header.addEventListener('click', () => {
+      const item = header.parentElement;
+      const isOpen = item.classList.contains('open');
+      // Close all
+      document.querySelectorAll('.accordion-item').forEach(i => {
+        i.classList.remove('open');
+        i.querySelector('.accordion-header').setAttribute('aria-expanded', 'false');
+      });
+      // Open this one if it wasn't already
+      if (!isOpen) {
+        item.classList.add('open');
+        header.setAttribute('aria-expanded', 'true');
+      }
+    });
+  });
+
+  // Hamburger menu
+  const hamburger = document.getElementById('hamburger');
+  const navList = document.getElementById('nav-list');
+  const navOverlay = document.getElementById('nav-overlay');
+  const navClose = document.getElementById('nav-close');
+
+  function openMenu() {
+    navList.classList.add('open');
+    navOverlay.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeMenu() {
+    navList.classList.remove('open');
+    navOverlay.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  if (hamburger) hamburger.addEventListener('click', openMenu);
+  if (navOverlay) navOverlay.addEventListener('click', closeMenu);
+  if (navClose) navClose.addEventListener('click', closeMenu);
+
+  // Close menu when a nav link is clicked (except the dropdown toggle)
+  document.querySelectorAll('.nav-list .nav-link:not(.dropdown-toggle)').forEach(link => {
+    link.addEventListener('click', closeMenu);
+  });
+
+  // Quote form submission — POST to Google Sheets (also sends email via Apps Script)
+  // NOTE: Paste your Apps Script Web App deployment URL below.
+  // See google-sheets-quote-apps-script.gs + SETUP_GUIDE.md for setup steps.
+  const QUOTE_ENDPOINT = 'https://script.google.com/macros/s/AKfycbwT5Do9tJWpSXEUw-MwkZLo8V_GiyJ_oqLszdG69psMlZeEzia2hfshR3BgjDbkcMSf8g/exec';
+
   const quoteForm = document.getElementById('quote-form');
   if (quoteForm) {
-    quoteForm.addEventListener('submit', function(e) {
+    quoteForm.addEventListener('submit', async function(e) {
       e.preventDefault();
-      alert('Thank you for your quote request! We will contact you soon.');
-      this.reset();
+      const btn = this.querySelector('button[type="submit"]');
+      const originalText = btn.textContent;
+      btn.textContent = 'Sending…';
+      btn.disabled = true;
+
+      const data = {
+        name: this.querySelector('input[type="text"]').value,
+        email: this.querySelector('input[type="email"]').value,
+        phone: this.querySelector('input[type="tel"]').value,
+        product: this.querySelector('select').value,
+        requirements: this.querySelector('textarea').value
+      };
+
+      if (!QUOTE_ENDPOINT) {
+        // Fallback: download CSV locally if endpoint not yet configured
+        const date = new Date().toLocaleDateString();
+        const csv = "data:text/csv;charset=utf-8,"
+          + "Date,Name,Email,Phone,Product Type,Requirements\n"
+          + `"${date}","${data.name}","${data.email}","${data.phone}","${data.product}","${data.requirements.replace(/"/g, '""')}"`;
+        const link = document.createElement('a');
+        link.href = encodeURI(csv);
+        link.download = `Keptron_Quote_${data.name.replace(/\s+/g, '_')}.csv`;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        alert('Thank you! (Endpoint not yet configured — details downloaded locally.)');
+        btn.textContent = originalText;
+        btn.disabled = false;
+        this.reset();
+        return;
+      }
+
+      try {
+        await fetch(QUOTE_ENDPOINT, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data)
+        });
+        this.innerHTML = `
+          <div style="text-align:center;padding:28px;">
+            <div style="font-size:2.5rem;margin-bottom:12px;">✅</div>
+            <h3 style="color:var(--brand-dark);margin-bottom:8px;">Quote Request Sent!</h3>
+            <p style="color:var(--text-muted);">Thank you for reaching out. Our team will contact you within 24 hours.</p>
+          </div>
+        `;
+      } catch (err) {
+        btn.textContent = originalText;
+        btn.disabled = false;
+        alert('Something went wrong. Please try again or contact us directly at info@keptronelectronics.com.');
+      }
     });
   }
   
