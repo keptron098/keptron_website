@@ -1,13 +1,6 @@
 // Three Phase UPS Products Data
 const threePhaseProducts = [
   {
-    name: "1kVA Three Phase Industrial Online UPS",
-    id: "1kva-3ph",
-    image: "assets/products/04_1kva-three-phase-industrial-online-ups-1749530587-8124116.jpeg",
-    price: "On request",
-    details: ["Country of Origin: India", "Capacity: 1 kVA", "Configuration: 3 Phase in & 3 Phase Out", "Phase: Three Phase", "Topology: Online"]
-  },
-  {
     name: "15kVA Three Phase Industrial Online UPS",
     id: "15kva-3ph",
     image: "assets/products/02_15kva-three-phase-industrial-online-ups-1749530414-8124106.jpeg",
@@ -146,7 +139,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   function showFiltered(tab) {
     let list = threePhaseProducts;
-    if (tab === 'low-capacity')  list = threePhaseProducts.filter(p => ['1kva-3ph','15kva-3ph'].includes(p.id));
+    if (tab === 'low-capacity')  list = threePhaseProducts.filter(p => ['15kva-3ph'].includes(p.id));
     if (tab === 'high-capacity') list = threePhaseProducts.filter(p => ['40kva','60kva'].includes(p.id));
     container.innerHTML = list.map(createProductCard).join('');
   }

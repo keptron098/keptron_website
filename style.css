@@ -795,6 +795,120 @@ ul.category-features li::before {
   box-shadow: 0 8px 22px rgba(235,61,1,0.40);
 }
 
+/* ── CLIENTS TICKER ───────────────────────────────────────── */
+.clients-section {
+  margin-top: 60px;
+  padding: 48px 0 36px;
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  overflow: hidden;
+}
+
+.clients-title {
+  text-align: center;
+  font-size: 1.6rem;
+  margin: 0 0 6px;
+}
+
+.clients-subtitle {
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  margin: 0 0 32px;
+}
+
+.ticker-wrap {
+  overflow: hidden;
+  position: relative;
+}
+
+.ticker-wrap::before,
+.ticker-wrap::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 80px;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.ticker-wrap::before {
+  left: 0;
+  background: linear-gradient(to right, var(--surface), transparent);
+}
+
+.ticker-wrap::after {
+  right: 0;
+  background: linear-gradient(to left, var(--surface), transparent);
+}
+
+.ticker-track {
+  display: flex;
+  gap: 20px;
+  width: max-content;
+  animation: ticker-scroll 40s linear infinite;
+}
+
+.ticker-wrap:hover .ticker-track {
+  animation-play-state: paused;
+}
+
+@keyframes ticker-scroll {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.client-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  min-width: 120px;
+  padding: 16px 12px;
+  border-radius: var(--r-md);
+  border: 1px solid var(--border);
+  background: var(--bg);
+  transition: box-shadow 0.2s, transform 0.2s;
+  cursor: default;
+}
+
+.client-item:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+
+.client-badge {
+  width: 60px;
+  height: 60px;
+  border-radius: var(--r-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-weight: 800;
+  font-size: 0.72rem;
+  letter-spacing: 0.5px;
+  text-align: center;
+  line-height: 1.2;
+}
+
+.client-logo {
+  width: 72px;
+  height: 60px;
+  object-fit: contain;
+  object-position: center;
+}
+
+.client-item span {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  text-align: center;
+  line-height: 1.3;
+  max-width: 100px;
+}
+
 /* ── FOOTER ───────────────────────────────────────────────── */
 footer {
   margin-top: 32px;
