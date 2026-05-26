@@ -81,11 +81,22 @@ function stripHtml(s) {
   return tmp.textContent || tmp.innerText || '';
 }
 
+function renderContent(raw) {
+  if (!raw) return '';
+  if (/<(h[1-6]|p|ul|ol|li|blockquote|div)\b/i.test(raw)) return raw;
+  return raw
+    .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+    .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+    .replace(/\n\n+/g, '</p><p>')
+    .replace(/\n/g, '<br>');
+}
+
 function openPost(p) {
   document.getElementById('post-modal-cat').textContent = p.category || 'General';
   document.getElementById('post-modal-title').textContent = p.title;
   document.getElementById('post-modal-meta').textContent = p.date || '';
-  document.getElementById('post-modal-content').innerHTML = p.content || '';
+  const content = renderContent(p.content || '');
+  document.getElementById('post-modal-content').innerHTML = content.startsWith('<') ? content : `<p>${content}</p>`;
   document.getElementById('post-modal').classList.add('open');
   document.body.style.overflow = 'hidden';
 }
