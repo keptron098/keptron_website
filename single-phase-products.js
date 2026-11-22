@@ -3,56 +3,56 @@ const singlePhaseProducts = [
   {
     name: "1kVA Single Phase Industrial Online UPS",
     id: "1kva",
-    image: "assets/products/03_1kva-single-phase-industrial-online-ups-1749530508-8124110.jpeg",
+    image: "/assets/products/03_1kva-single-phase-industrial-online-ups-1749530508-8124110.jpeg",
     price: "On request",
     details: ["Country of Origin: India", "Capacity: 1 KVA", "Configuration: 1 Phase IN & 1 Phase OUT", "Model Name: KEM4401", "Warranty: 2 Years"]
   },
   {
     name: "2kVA Single Phase Industrial Online UPS",
     id: "2kva",
-    image: "assets/products/06_2kva-single-phase-industrial-online-ups-1749529166-2926365.jpeg",
+    image: "/assets/products/06_2kva-single-phase-industrial-online-ups-1749529166-2926365.jpeg",
     price: "On request",
     details: ["Country of Origin: India", "Capacity: 2 KVA", "Configuration: 1 Phase in & 1 Phase Out", "Model Name: KE4402", "Efficiency: 85%"]
   },
   {
     name: "3kVA Single Phase Industrial Online UPS",
     id: "3kva",
-    image: "assets/products/07_3kva-single-phase-industrial-online-ups-1749529705-8124052.jpeg",
+    image: "/assets/products/07_3kva-single-phase-industrial-online-ups-1749529705-8124052.jpeg",
     price: "On request",
     details: ["Phase: Single Phase", "Country of Origin: India", "Capacity: 3 KVA", "Configuration: 1 Phase in & 1 Phase Out", "Model Name: KE4403"]
   },
   {
     name: "5kVA Single Phase Industrial Online UPS",
     id: "5kva",
-    image: "assets/products/09_5kva-single-phase-industrial-online-ups-1749530253-8124091.jpeg",
+    image: "/assets/products/09_5kva-single-phase-industrial-online-ups-1749530253-8124091.jpeg",
     price: "On request",
     details: ["Country of Origin: India", "Capacity: 5 KVA", "Configuration: 1 Phase in & 1 Phase Out", "Back Up Time: 30 Mins", "Application: Continuous Power Backup"]
   },
   {
     name: "7.5kVA Single Phase Industrial Online UPS",
     id: "7p5kva",
-    image: "assets/products/11_7-5kva-single-phase-industrial-online-ups-1749529325-2924337.jpeg",
+    image: "/assets/products/11_7-5kva-single-phase-industrial-online-ups-1749529325-2924337.jpeg",
     price: "On request",
     details: ["Phase: Single Phase", "Country of Origin: India", "Configuration: 1 Phase in & 1 Phase Out", "Model Name: KE4407P5", "Warranty: 1 Year"]
   },
   {
     name: "10kVA Single Phase Industrial Online UPS",
     id: "10kva",
-    image: "assets/products/00_10kva-single-phase-industrial-online-ups-1749529507-8124040.jpeg",
+    image: "/assets/products/00_10kva-single-phase-industrial-online-ups-1749529507-8124040.jpeg",
     price: "On request",
     details: ["Phase: Single Phase", "Country of Origin: India", "Capacity: 10 KVA", "Configuration: 1 Phase IN & 1 Phase OUT", "Model Name: KE44010"]
   },
   {
     name: "15kVA Single Phase Industrial Online UPS",
     id: "15kva-sp",
-    image: "assets/products/01_15kva-single-phase-industrial-online-ups-1749529825-8124060.jpeg",
+    image: "/assets/products/01_15kva-single-phase-industrial-online-ups-1749529825-8124060.jpeg",
     price: "On request",
     details: ["Country of Origin: India", "Phase: Single Phase", "Capacity: 15 KVA", "Configuration: 1 Phase in & 1 Phase Out", "Application: Continuous Power Backup"]
   },
   {
     name: "20kVA Single Phase Industrial Online UPS",
     id: "20kva",
-    image: "assets/products/05_20kva-single-phase-industrial-online-ups-1749529605-8124045.jpeg",
+    image: "/assets/products/05_20kva-single-phase-industrial-online-ups-1749529605-8124045.jpeg",
     price: "On request",
     details: ["Country of Origin: India", "Capacity: 20 KVA", "Configuration: 1 Phase in & 1 Phase Out", "Model Name: KE44020", "Phase: Single Phase"]
   }
@@ -79,7 +79,7 @@ function initModal() {
             <span>Price:</span> <strong>On Request</strong> <em>(enquiry-based)</em>
           </div>
           <ul id="modal-specs" class="modal-specs"></ul>
-          <a href="index.html#contact" class="btn-primary modal-cta">Request a Quote</a>
+          <a href="/contact-us/" class="btn-primary modal-cta">Request a Quote</a>
         </div>
       </div>
     </div>
@@ -139,7 +139,7 @@ function createProductCard(product) {
         </p>
         <div class="product-actions">
           <button class="btn-details" data-product-id="${product.id}">View Details</button>
-          <a href="index.html#contact" class="btn-primary">Get Quote</a>
+          <a href="/contact-us/" class="btn-primary">Get Quote</a>
         </div>
       </div>
     </article>

@@ -3,21 +3,21 @@ const threePhaseProducts = [
   {
     name: "15kVA Three Phase Industrial Online UPS",
     id: "15kva-3ph",
-    image: "assets/products/02_15kva-three-phase-industrial-online-ups-1749530414-8124106.jpeg",
+    image: "/assets/products/02_15kva-three-phase-industrial-online-ups-1749530414-8124106.jpeg",
     price: "On request",
     details: ["Country of Origin: India", "Capacity: 15 KVA", "Model Name: KE44015", "Phase: 3 Phase", "Warranty: 3 Years"]
   },
   {
     name: "40kVA Three Phase Industrial Online UPS",
     id: "40kva",
-    image: "assets/products/08_40kva-three-phase-industrial-online-ups-1749530047-8124075.jpeg",
+    image: "/assets/products/08_40kva-three-phase-industrial-online-ups-1749530047-8124075.jpeg",
     price: "On request",
     details: ["Country of Origin: India", "Capacity: 40 kVA", "Phase: Three Phase", "Application: Continuous Power Backup", "Warranty: 1 Year"]
   },
   {
     name: "60kVA Three Phase Industrial Online UPS",
     id: "60kva",
-    image: "assets/products/10_60kva-three-phase-industrial-online-ups-1749530152-8124084.jpeg",
+    image: "/assets/products/10_60kva-three-phase-industrial-online-ups-1749530152-8124084.jpeg",
     price: "On request",
     details: ["Country of Origin: India", "Capacity: 60 kVA", "Phase: Three Phase", "Application: Continuous Power Backup", "Warranty: 2 Years"]
   }
@@ -44,7 +44,7 @@ function initModal() {
             <span>Price:</span> <strong>On Request</strong> <em>(enquiry-based)</em>
           </div>
           <ul id="modal-specs" class="modal-specs"></ul>
-          <a href="index.html#contact" class="btn-primary modal-cta">Request a Quote</a>
+          <a href="/contact-us/" class="btn-primary modal-cta">Request a Quote</a>
         </div>
       </div>
     </div>
@@ -104,7 +104,7 @@ function createProductCard(product) {
         </p>
         <div class="product-actions">
           <button class="btn-details" data-product-id="${product.id}">View Details</button>
-          <a href="index.html#contact" class="btn-primary">Get Quote</a>
+          <a href="/contact-us/" class="btn-primary">Get Quote</a>
         </div>
       </div>
     </article>
