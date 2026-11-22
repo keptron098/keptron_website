@@ -81,7 +81,8 @@ h2, h3, h4 { color: var(--brand-dark); }
   padding: 6px;
 }
 
-.brand-info h1 {
+.brand-info h1,
+.brand-info .brand-name {
   font-size: 1.45rem;
   color: #fff;
   letter-spacing: -0.3px;
@@ -252,6 +253,7 @@ h2, h3, h4 { color: var(--brand-dark); }
 
 .hero-content { position: relative; z-index: 1; }
 
+.hero-content h1,
 .hero-content h2 {
   font-size: 2.6rem;
   font-weight: 800;
@@ -261,6 +263,7 @@ h2, h3, h4 { color: var(--brand-dark); }
   line-height: 1.2;
 }
 
+.hero-content h1 span,
 .hero-content h2 span { color: #ffa07a; }
 
 .hero-content p {
@@ -279,7 +282,7 @@ h2, h3, h4 { color: var(--brand-dark); }
 
 .hero-features {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 18px;
   position: relative;
   z-index: 1;
@@ -394,7 +397,7 @@ h2, h3, h4 { color: var(--brand-dark); }
 
 .category-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: 22px;
 }
 
@@ -1866,7 +1869,7 @@ section {
   .cta-buttons { flex-direction: column; align-items: center; }
   .testimonials-grid { grid-template-columns: 1fr; }
   .hero-section { padding: 52px 24px 44px; }
-  .hero-content h2 { font-size: 1.85rem; }
+  .hero-content h1, .hero-content h2 { font-size: 1.85rem; }
 
   .cert-items { gap: 20px; }
   .cert-item { font-size: 0.85rem; }
@@ -1881,12 +1884,12 @@ section {
   .modal-box { max-height: 95vh; border-radius: var(--r-md); }
   .tab-btn { padding: 12px 16px; font-size: 0.82rem; }
 
-  .brand-info h1 { font-size: 1.1rem; }
+  .brand-info h1, .brand-info .brand-name { font-size: 1.1rem; }
   .brand-info p { font-size: 0.72rem; }
   .logo { width: 58px; height: 58px; }
   .badge { font-size: 0.68rem; padding: 5px 12px; }
 
-  .hero-content h2 { font-size: 1.55rem; }
+  .hero-content h1, .hero-content h2 { font-size: 1.55rem; }
   .hero-content p { font-size: 0.95rem; }
   .hero-section { padding: 42px 20px 36px; }
 
@@ -1908,11 +1911,11 @@ section {
 }
 
 @media (max-width: 480px) {
-  .brand-info h1 { font-size: 1rem; }
+  .brand-info h1, .brand-info .brand-name { font-size: 1rem; }
   .brand-info p { font-size: 0.68rem; }
   .logo { width: 48px; height: 48px; }
   .logo-section { gap: 8px; }
-  .hero-content h2 { font-size: 1.35rem; }
+  .hero-content h1, .hero-content h2 { font-size: 1.35rem; }
   .contact-info p { font-size: 0.88rem; word-break: break-word; }
   .contact-info a { word-break: break-all; }
   .glimpse { grid-template-columns: 1fr; }
@@ -1924,5 +1927,5 @@ section {
 @media (max-height: 500px) and (orientation: landscape) {
   .main-header { position: relative; }
   .hero-section { padding: 32px 24px 28px; }
-  .hero-features { grid-template-columns: repeat(3, 1fr); gap: 10px; }
+  .hero-features { grid-template-columns: repeat(2, 1fr); gap: 10px; }
 }
